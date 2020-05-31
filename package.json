@@ -12,8 +12,8 @@
   },
   "author": "Takaki Miyajima",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/takakimiyajima/jobcan-easily/issues"
-  },
-  "homepage": "https://github.com/takakimiyajima/jobcan-easily#readme"
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-zip": "^4.1.0"
+  }
 }
