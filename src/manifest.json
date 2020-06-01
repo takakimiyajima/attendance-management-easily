@@ -9,16 +9,14 @@
     "128": "public/img/icon128.png"
   },
   "browser_action": {
-    "default_icon": "public/img/icon38.png",
-    "default_popup": "public/popup.html"
+    "default_popup": "public/popup.html",
+    "default_icon": "public/img/icon38.png"
   },
   "background": {
-    "page": "public/background.html",
-    "persistent": true
+    "page": "public/js/background.js",
+    "persistent": false
   },
   "permissions": [
-    "https://holidays-jp.github.io/*",
-    "https://ssl.jobcan.jp/*",
     "storage",
     "geolocation"
   ],
