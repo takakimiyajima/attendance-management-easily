@@ -2,7 +2,8 @@
   "name": "jobcan-easily",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "gulpfile.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -13,7 +14,7 @@
   "author": "Takaki Miyajima",
   "license": "ISC",
   "devDependencies": {
-    "gulp": "^3.9.1",
-    "gulp-zip": "^4.1.0"
+    "gulp": "^4.0.2",
+    "gulp-zip": "^5.0.1"
   }
 }
