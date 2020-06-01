@@ -1,0 +1,26 @@
+{
+  "manifest_version": 2,
+  "name": "らくらくジョブカン入力ツール",
+  "version": "1.0.0",
+  "description": "Easily JobCan Input Tool",
+  "icons": {
+    "32": "public/img/icon32.png",
+    "48": "public/img/icon48.png",
+    "128": "public/img/icon128.png"
+  },
+  "browser_action": {
+    "default_icon": "public/img/icon38.png",
+    "default_popup": "public/popup.html"
+  },
+  "background": {
+    "page": "public/background.html",
+    "persistent": true
+  },
+  "permissions": [
+    "https://holidays-jp.github.io/*",
+    "https://ssl.jobcan.jp/*",
+    "storage",
+    "geolocation"
+  ],
+  "options_page": "public/options.html"
+} 
