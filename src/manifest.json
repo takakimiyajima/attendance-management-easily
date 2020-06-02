@@ -19,7 +19,8 @@
   "permissions": [
     "storage",
     "geolocation",
-    "https://holidays-jp.github.io/*"
+    "https://holidays-jp.github.io/*",
+    "https://ssl.jobcan.jp/*"
   ],
   "options_page": "public/options.html"
 } 
