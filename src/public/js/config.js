@@ -13,7 +13,7 @@ const config = () => {
     return new Promise((resolve, reject) => {
       console.log('config.get', key);
       chrome.storage.sync.get([key], (res) => {
-          resolve(res[key]);
+        resolve(res[key]);
       });
     });
   };

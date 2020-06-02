@@ -7,8 +7,8 @@ const getGps = () => {
 
 // 位置を取得
 const setPosition = async () => {
-  const latitude = await config.get('latitude');
-  const longitude = await config.get('longitude');
+  const latitude = await config().get('latitude');
+  const longitude = await config().get('longitude');
   if (!latitude || !longitude) {
     window.position = await getGps();
   }
