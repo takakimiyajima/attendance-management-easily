@@ -1,16 +1,87 @@
 <!DOCTYPE html>
-<html>
+<html style="width: 250px; height: 245px;">
   <head>
-    <style>
-      button {
-        height: 30px;
-        width: 30px;
-        outline: none;
-      }
-    </style>
+    <meta charset="utf-8" />
+    <title>らくらくジョブカン入力ツール</title>
+    <link href="css/lib/bootstrap.css" rel="stylesheet">
+    <link href="css/lib/open-iconic-bootstrap.css" rel="stylesheet">
+    <!-- <link href="css/popup.css" rel="stylesheet"> -->
   </head>
-  <body>
-    <button id="changeColor"></button>
-    <script src="popup.js"></script>
+
+  <body id="app" style="height: 245px;">
+    <p>こんにちは</p>
+
+    <!-- <p v-if="alert" class="alert alert-danger">{{ alert }}</p>
+    <div class="day-info">
+      <div class="nav-header">
+        <a v-bind:href='day.jobcanDay.url' class="nav-header-date" target="_blank">
+          {{ day.date.format('M/D (ddd)') }}
+        </a>
+        <span class="float-right">
+          <a v-on:click.prevent="addDay(-1)" href="#">
+            <span class="oi oi-chevron-left"></span>
+          </a>
+          <a v-on:click.prevent="addDay('today')" href="#">
+            <span class="oi oi-media-stop"></span>
+          </a>
+          <a v-on:click.prevent="addDay(1)" href="#">
+            <span class="oi oi-chevron-right"></span>
+          </a>
+          <a href="viewer.html" target="_blank">
+            <span class="oi oi-calendar"></span>
+          </a>
+          <a href="options.html" target="_blank">
+            <span class="oi oi-cog"></span>
+          </a>
+        </span>
+      </div>
+      <div class="calendar-log">
+        <div v-if="day.info && day.info.hours.accepted" class="calendar-log-accepted text-secondary">
+          承認: 勤務
+          <b>{{ day.info.hours.accepted.work.asHours().toFixed(1) }}h</b>, 休
+          <b>{{ day.info.hours.accepted.rest.asHours().toFixed(1) }}h</b>
+        </div>
+        <div v-if="day.info && day.info.hours.applied" class="calendar-log-applied text-primary">
+          申請: 勤務
+          <b>{{ day.info.hours.applied.work.asHours().toFixed(1) }}h</b>, 休
+          <b>{{ day.info.hours.applied.rest.asHours().toFixed(1) }}h</b>
+        </div>
+        <span v-if="!d.info" class="calendar-log-notyet">未登録</span>
+      </div>
+
+      <div v-if="day.info.alert" class="calendar-alert">
+        <a v-bind:href='day.jobcanDay.url' target="_blank" class="text-danger">
+          {{ day.info.alert }}
+        </a>
+      </div>
+      <div class="calendar-stamps">
+        <span v-for="s in day.info.stamps" class="badge badge-secondary calendar-stamp">
+          {{ s.time }} {{ s.type }}
+        </span>
+      </div>
+      <div v-if="day.result" class="calendar-msg alert alert-warning">
+        {{ day.result }}
+      </div>
+    </div>
+
+    <div class="btn-toolbar row">
+      <div class="input-group col">
+        <select class="form-control-sm width100" v-model="ui.input.time">
+          <option value="now">いま</option>
+          <option v-for="i in 25-9+1" v-bind:value="i+9">{{ i + 9 }}:00</option>
+        </select>
+      </div>
+      <div class="btn-group col" role="group">
+        <button v-on:click="stamp(true)" type="button" class="width100 btn btn-sm btn-secondary">出社</button>
+        <button v-on:click="stamp(false)" type="button" class="width100 btn btn-sm btn-secondary">退社</button>
+      </div>
+    </div> -->
   </body>
+
+  <script src="js/lib/vue.csp.js"></script>
+  <script src="js/lib/jquery.js"></script>
+
+  <script src="js/holiday.js"></script>
+  <script src="js/config.js"></script>
+  
 </html>
