@@ -10,16 +10,16 @@ const config = () => {
   }
 
   const get = (key) => {
-    return new Promise(function(resolve, reject){
+    return new Promise((resolve, reject) => {
       console.log('config.get', key);
-      chrome.storage.sync.get([key], function(res){
+      chrome.storage.sync.get([key], (res) => {
           resolve(res[key]);
       });
     });
   };
 
   const setLocal = (key, val) => {
-    return new Promise(function(resolve, reject){
+    return new Promise((resolve, reject) => {
       console.log('config.setLocal', key, val);
       const pair = {};
       pair[key] = val;
@@ -28,16 +28,16 @@ const config = () => {
   };
 
   const getLocal = (key) => {
-    return new Promise(function(resolve, reject){
+    return new Promise((resolve, reject) => {
       // console.log('config.getLocal', key);
-      chrome.storage.local.get([key], function(res){
+      chrome.storage.local.get([key], (res) => {
           resolve(res[key]);
       });
     });
   };
 
   const clearLocal = () => {
-    return new Promise(function(resolve, reject){
+    return new Promise((resolve, reject) => {
       console.log('config.clearLocal');
       chrome.storage.local.clear(resolve);
     });
