@@ -18,7 +18,8 @@
   },
   "permissions": [
     "storage",
-    "geolocation"
+    "geolocation",
+    "https://holidays-jp.github.io/*"
   ],
   "options_page": "public/options.html"
 } 
