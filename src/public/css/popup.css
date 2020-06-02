@@ -1,0 +1,40 @@
+body{
+    color: #757575;
+    padding: 0.5em;
+    padding-bottom: 0.5em;
+    padding-top: 0.2em;
+}
+
+
+.nav-header{
+    border-bottom: 1px solid #757575;
+    margin-bottom: 0.5em;
+}
+.nav-header a{
+    color: #757575;
+    font-size: 1em;
+}
+.nav-header a.nav-header-date{
+    font-size: 2em;
+}
+
+.day-info{
+    min-height: 200px;
+    font-size: small;
+    padding-bottom: 0.5em;
+    border-bottom: 1px solid #757575;
+    margin-bottom: 0.5em;
+}
+.calendar-stamp{
+    margin: 2px;
+}
+.calendar-alert{
+    font-size: smaller;
+}
+
+
+
+
+.width100{
+    width: 100%;
+}

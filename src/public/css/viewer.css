@@ -1,0 +1,118 @@
+body{
+    margin-top: calc(56px + 10px + 0.5em);
+    padding-bottom: 0.5em;
+}
+.notification{
+    top: -0.5em;
+}
+.navigation{
+    margin-bottom: 0.5em;
+}
+.navigation button.btn{
+    color: #757575;
+}
+.navigation-month{
+    padding-left: 2em; 
+    color: #757575;
+    font-size: large;
+}
+[v-cloak] {
+    display: none;
+}
+
+.loading .progress{
+    height: 10px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+.loading{
+    position: fixed;
+    top: 56px;
+    width: 100%;
+    z-index: 100;
+}
+
+.table.calendar{
+    width: 100%;
+}
+.table.calendar td.calendar-td{
+    width: calc(100% / 7);
+    height: 150px;
+    padding: 0.5em;
+}
+.table.calendar td.calendar-today{
+    background-color: #fff3cd;
+}
+.table.calendar td.calendar-td:not(.calendar-thismonth){
+    background-color: #cccccc;
+}
+.calendar td.calendar-td.calendar-thismonth:hover{
+    background-color: #ffde7c;
+    cursor: pointer;
+}
+.calendar td.calendar-td.calendar-thismonth.calendar-checked, .calendar td.calendar-td.calendar-thismonth.calendar-checked:hover{
+    background-color: #ffc107;
+}
+.calendar td.calendar-td.calendar-thismonth.calendar-holiday:not(:hover):not(.calendar-checked){
+    background-color: #eeeeee;
+}
+
+.calendar-weekday{
+    color: #757575;
+    padding-bottom: 0.5em;
+}
+.calendar-date a{
+    color: #212121;
+}
+.calendar-date .calendar-holiday-name{
+    font-size: small;
+    color: #bbbbbb;
+}
+.calendar-date-disabled{
+    color: #bBBBBB;
+}
+.calendar-date-checkbox{
+    float: right;
+}
+.calendar-date, .calendar-date-disabled{
+    padding-bottom: 0.5em;
+}
+.calendar-log{
+    font-size: smaller;
+}
+.calendar-log-notyet{
+    color: #BBBBBB;
+}
+
+.calendar-alert{
+    font-size: xx-small;
+    padding-top: 0.5em;
+}
+
+.calendar-msg{
+    padding: 0.3em;
+    font-size: xx-small;
+}
+
+.calendar-stamps{
+    font-size: small;
+}
+.calendar-stamp{
+    margin: 2px;
+}
+
+.button-submit-enter, .button-submit-leave{
+    min-width: 5em;
+}
+
+.about-notice{
+    font-size: x-small;
+    text-align: right;
+    color: #757575;
+}
+
+.no-padding-right{
+    padding-right: 0;
+}
