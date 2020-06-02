@@ -13,7 +13,7 @@
     "default_icon": "public/img/icon38.png"
   },
   "background": {
-    "page": "public/js/background.js",
+    "page": "public/background.html",
     "persistent": false
   },
   "permissions": [
