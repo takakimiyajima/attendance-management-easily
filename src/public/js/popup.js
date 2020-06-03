@@ -8,7 +8,7 @@ const initDay = (_date) => {
   return {
     date: date,
     isToday: date.isSame(today, 'day'),
-    jobcanDay: jobcan.day(date),
+    jobcanDay: Jobcan().day(date),
     holiday: holiday.check(date),
   };
 };
@@ -50,7 +50,7 @@ const stamp = async (isAuto) => {
       const note = isAuto ? '出社' : '退社';
       const manager = await config().get('manager');
 
-      result = await jobcan.stamp(isAuto, latitude, longitude, note, manager, true);
+      result = await Jobcan().stamp(isAuto, latitude, longitude, note, manager, true);
     }
     else {
       const hour = app.ui.input.time;
@@ -94,7 +94,7 @@ const getAlert = async () => {
   return msg;
 }
 
-const init = async () => {
+async function init() {
 
   jobcan = Jobcan(await config().get('loginCode'));
   await holiday.init();

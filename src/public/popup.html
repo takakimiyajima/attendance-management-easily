@@ -34,7 +34,7 @@
           </a>
         </span>
       </div>
-      <!--<div class="calendar-log">
+      <div class="calendar-log">
         <div v-if="day.info && day.info.hours.accepted" class="calendar-log-accepted text-secondary">
           承認: 勤務
           <b>{{ day.info.hours.accepted.work.asHours().toFixed(1) }}h</b>, 休
@@ -74,14 +74,17 @@
         <button v-on:click="stamp(true)" type="button" class="width100 btn btn-sm btn-secondary">出社</button>
         <button v-on:click="stamp(false)" type="button" class="width100 btn btn-sm btn-secondary">退社</button>
       </div>
-    </div> -->
+    </div>
   </body>
 
   <script src="js/lib/vue.csp.js"></script>
+  <script src="js/lib/moment.js"></script>
   <script src="js/lib/jquery.js"></script>
 
+  <script src="js/util.js"></script>
   <script src="js/holiday.js"></script>
   <script src="js/config.js"></script>
+  <script src="js/jobcan.js"></script>
   <script src="js/popup.js"></script>
   
 </html>

@@ -179,10 +179,10 @@ const Jobcan = (loginCode) => {
   };
 
   return {
-      day,
-      stamp,
-      listManagers,
-      login
+    day,
+    stamp,
+    listManagers,
+    login
   };
 };
 
