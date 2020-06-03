@@ -27,7 +27,7 @@ async function init() {
       }
     },
     methods: {
-      save: saveConfig(),
+      save: saveConfig,
       setLocation(latitude, longitude) {
         app.config.latitude = latitude;
         app.config.longitude = longitude;
@@ -73,13 +73,14 @@ async function saveConfig() {
   app.message = '保存しています...';
 
   for (let key of configKeys) {
-    await config.set(key, app.config[key]);
+    await config().set(key, app.config[key]);
   }
 
   for (let key of configLocalKeys) {
-    await config.setLocal(key, app.configLocal[key]);
+    await config().setLocal(key, app.configLocal[key]);
   }
 
+  // 1秒だけ「保存しました」と表示させる
   app.message = '保存しました'
   setTimeout(() => { app.message = '' }, 1000);
 }
