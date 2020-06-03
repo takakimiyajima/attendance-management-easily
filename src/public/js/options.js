@@ -15,7 +15,7 @@ async function init() {
       configLocal: {},
       managers: [],
       message: '',
-      autostampCodes: autostampCodes
+      // autostampCodes: autostampCodes
     },
     computed: {
       loginCode: {
@@ -27,14 +27,14 @@ async function init() {
       }
     },
     methods: {
-      save: saveConfig,
+      save: saveConfig(),
       setLocation(latitude, longitude) {
         app.config.latitude = latitude;
         app.config.longitude = longitude;
       },
-      getAutostampCode() {
-        return autostampCodes[this.config.autostampMode].trim();
-      },
+      // getAutostampCode() {
+      //   return autostampCodes[this.config.autostampMode].trim();
+      // },
       clearLocals() {
         config.clearLocal();
         alert('削除しました');
@@ -58,10 +58,10 @@ async function loadManagers() {
 
 async function loadConfig() {
   for (let key of configKeys) {
-    Vue.set(app.config, key, await config.get(key));
+    Vue.set(app.config, key, await config().get(key));
   }
   for (let key of configLocalKeys) {
-    Vue.set(app.configLocal, key, await config.getLocal(key));
+    Vue.set(app.configLocal, key, await config().getLocal(key));
   }
 }
 
