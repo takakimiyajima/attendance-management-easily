@@ -1,0 +1,122 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>ジョブカン入力補助ツール 設定</title>
+    <link href="css/lib/bootstrap.css" rel="stylesheet">
+    <link href="css/options.css" rel="stylesheet">
+  </head>
+
+  <body>
+    <header>
+      <div class="navbar navbar-dark bg-dark box-shadow fixed-top">
+        <div class="container d-flex justify-content-between">
+          <a href="#" class="navbar-brand">らくらくジョブカン入力ツール 設定</a>
+        </div>
+      </div>
+    </header>
+
+    <div class="container form-option" role="main" id="app">
+      <form v-on:submit.prevent="save">
+        <div class="form-group row">
+          <div class="col-sm-2">
+            <label class="col-form-label">ログインコード</label>
+          </div>
+          <div class="col-sm-10">
+            <input class="form-control" type="text" v-model="loginCode">
+            <small class="form-text text-muted">ログインコードは、メールで送られた打刻用URLの http://jobcan.jp/m?code=【この部分】 です</small>
+          </div>
+        </div>
+          <div class="form-group row">
+            <div class="col-sm-2">
+              <label class="col-form-label">打刻グループ</label>
+            </div>
+            <div class="col-sm-10">
+              <select class="form-control" name="group-id" v-model="config.manager">
+                <option v-for="m in managers" v-bind:value="m.id">{{m.name}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-sm-2">
+              <label class="col-form-label">GPS位置</label>
+            </div>
+            <div class="col-sm-3">
+              <label class="col-form-label">緯度</label>
+              <input v-model="config.latitude" class="form-control">
+              <small class="form-text text-muted">空の場合はGPSを利用します</small>
+            </div>
+            <div class="col-sm-3">
+              <label class="col-form-label">経度</label>
+              <input v-model="config.longitude" class="form-control">
+            </div>
+            <div class="col-sm-3">
+              <label class="col-form-label">　</label>
+              <div><input v-on:click.prevent="setLocation(35.700014, 139.774677)" type="button" class="form-control btn btn-secondary" value="秋葉原オフィスを設定"></div>
+            </div>
+          </div>
+          <hr>
+          <!-- <div class="form-group row">
+            <div class="col-sm-2">
+              <label class="col-form-label">自動打刻（ベータ）</label>
+            </div>
+            <div class="col-sm-10">
+              <select class="form-control" name="autostampMode" v-model="config.autostampMode">
+                <option value="none">自動打刻しない</option>
+                <option v-for="(k, c) in autostampCodes" v-bind:value="k">{{c.title}}</option>
+                <option value="custom">カスタムモード</option>
+              </select>
+              <small class="form-text text-muted" v-if="config.autostampMode && config.autostampMode!='none'">{{config.autostampMode=='custom' ? '自分でコードを記述します' : autostampCodes[config.autostampMode].description}}</small>
+            </div>
+          </div> -->
+          <!-- <div class="form-group row" v-if="config.autostampMode && config.autostampMode!='none'">
+            <div class="col-sm-2">
+              <label class="col-form-label">PC設定</label>
+            </div>
+              <div class="col-sm-10">
+                <div class="form-check">
+                <label class="form-check-label">
+                  <input class="form-check-input" type="checkbox" v-model="configLocal.execAutostamp">
+                  このPCで自動打刻を行う
+                  <small class="form-text text-muted">ラボオフィスで使うメインPC１台だけ、このチェックを入れてください</small>
+                </label>
+              </div>
+            </div>
+          </div> -->
+          <!-- <div class="form-group row" v-if="config.autostampMode && config.autostampMode!='none'">
+            <div class="col-sm-2">
+              <label class="col-form-label">スクリプト</label>
+            </div>
+            <div class="col-sm-10">
+              <textarea class="form-control code" rows=30 v-if="config.autostampMode!='custom'" disabled>{{autostampCodes[config.autostampMode].code.trim()}}</textarea>
+              <textarea class="form-control code" rows=30 v-if="config.autostampMode=='custom'" v-model="config.autostampCustomCode"></textarea>
+              <small class="form-text text-muted">
+                このスクリプトが毎分実行されます。
+                APIとして、
+                <a href="https://github.com/team-lab/tools-SimpleJobcan/blob/master/src/public/js/autostamp-api.js" target="_blank">こちら</a>
+                に記述されている関数が利用できます。詳細は #kintai-util チャンネルでお尋ねください。
+              </small>
+              <div class="text-right">
+                <button type="button" class="btn btn-link btn-sm" v-on:click="clearLocals()">保存した値のクリア</button>
+              </div>
+            </div>
+          </div> -->
+          <div class="form-group row">
+            <div class="col-sm-10">
+              <button type="submit" class="btn btn-primary">設定を保存</button>
+            </div>
+          </div>
+      </form>
+    </div>
+  </body>
+
+  <script src="js/lib/vue.csp.js"></script>
+  <script src="js/lib/moment.js"></script>
+  <script src="js/lib/jquery.js"></script>
+
+  <!-- <script src="js/util.js"></script> -->
+  <script src="js/jobcan.js"></script>
+  <script src="js/config.js"></script>
+  <!-- <script src="js/autostamp-codes.js"></script> -->
+  <script src="js/options.js"></script>
+
+</html>
