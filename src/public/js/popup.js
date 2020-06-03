@@ -88,8 +88,8 @@ const getStampsOf = (typeId) => {
 
 const getAlert = async () => {
   let msg = null;
-  if(!(await config().get('loginCode'))) msg = "拡張機能のオプションでログインコードを設定してください！";
-  else if(!(await config().get('manager'))) msg = "拡張機能のオプションで打刻グループを設定してください！";
+  if (!(await config().get('loginCode'))) msg = "拡張機能のオプションでログインコードを設定してください！";
+  else if (!(await config().get('manager'))) msg = "拡張機能のオプションで打刻グループを設定してください！";
 
   return msg;
 }

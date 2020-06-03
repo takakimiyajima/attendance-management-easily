@@ -11,7 +11,7 @@
   <body id="app" style="height: 245px;">
 
     <p v-if="alert" class="alert alert-danger">{{ alert }}</p>
-    <!-- <div class="day-info">
+     <div class="day-info">
       <div class="nav-header">
         <a v-bind:href='day.jobcanDay.url' class="nav-header-date" target="_blank">
           {{ day.date.format('M/D (ddd)') }}
@@ -26,15 +26,15 @@
           <a v-on:click.prevent="addDay(1)" href="#">
             <span class="oi oi-chevron-right"></span>
           </a>
-          <a href="viewer.html" target="_blank">
+          <!-- <a href="viewer.html" target="_blank">
             <span class="oi oi-calendar"></span>
-          </a>
+          </a> -->
           <a href="options.html" target="_blank">
             <span class="oi oi-cog"></span>
           </a>
         </span>
       </div>
-      <div class="calendar-log">
+      <!--<div class="calendar-log">
         <div v-if="day.info && day.info.hours.accepted" class="calendar-log-accepted text-secondary">
           承認: 勤務
           <b>{{ day.info.hours.accepted.work.asHours().toFixed(1) }}h</b>, 休
@@ -82,7 +82,6 @@
 
   <script src="js/holiday.js"></script>
   <script src="js/config.js"></script>
-  <script src="js/jobcan.js"></script>
   <script src="js/popup.js"></script>
   
 </html>
