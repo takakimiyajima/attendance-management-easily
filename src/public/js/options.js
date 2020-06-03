@@ -51,11 +51,13 @@ function delayedOnce(fn, ms) {
   timeout = setTimeout(fn, ms);
 }
 
+/** ジョブカンコードをセットしたタイミングで、 */
 async function loadManagers() {
   jobcan = Jobcan(app.loginCode);
   app.managers = await jobcan.listManagers(true);
 }
 
+/** localStorageから値を取得してDataにセットする */
 async function loadConfig() {
   for (let key of configKeys) {
     Vue.set(app.config, key, await config().get(key));
@@ -65,6 +67,7 @@ async function loadConfig() {
   }
 }
 
+/** Dataの値をlocalStorageに保存し直す */
 async function saveConfig() {
   if (!app.config.autostampMode || app.config.autostampMode == 'none') {
     app.configLocal.execAutostamp = false;
@@ -80,7 +83,7 @@ async function saveConfig() {
     await config().setLocal(key, app.configLocal[key]);
   }
 
-  // 1秒だけ「保存しました」と表示させる
+  // 1秒だけ「保存しました」と表示させ、空文字をセット
   app.message = '保存しました'
   setTimeout(() => { app.message = '' }, 1000);
 }

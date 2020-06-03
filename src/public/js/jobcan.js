@@ -71,11 +71,11 @@ const Jobcan = (loginCode) => {
     };
 
     //打刻申請
-    const addStamp = async   (isAuto, hour, minute, note, manager, doLogin) => {
+    const addStamp = async (isAuto, hour, minute, note, manager, doLogin) => {
       console.log('jobcan.addStamp', util.ymd(date), isAuto, hour, minute, note, manager);
       var url = 'https://ssl.jobcan.jp/m/work/accessrecord?_m=edit&recordDay=' + util.ymd(date);
-      if(doLogin) url += loginParam;
-      var html = await $.ajax({url});
+      if (doLogin) url += loginParam;
+      var html = await $.ajax({ url });
       var doc = $(html);
       const form = doc.find('form');
       if (form.length) {
@@ -136,33 +136,31 @@ const Jobcan = (loginCode) => {
       yakin: ''
     };
     let url = 'https://ssl.jobcan.jp/m/work/stamp-save-confirm/';
-    if(doLogin) url += loginParam;
-    let html = await $.ajax({url, data, method:'POST'});
+    if (doLogin) url += loginParam;
+    let html = await $.ajax({ url, data, method:'POST' });
     var doc = $(html);
     var domToken = doc.find('input[name=token]');
-    if(domToken.length){
+    if (domToken.length) {
       data.token = domToken.val();
       data.confirm = 'はい';
       url = 'https://ssl.jobcan.jp/m/work/stamp-save-smartphone/';
-      html = await $.ajax({url, data, method:'POST'});
+      html = await $.ajax({ url, data, method:'POST' });
       doc = $(html);        
     }
     var domAlert = doc.find('div[style="text-align: center"]');
-    if(domAlert.length){
+    if (domAlert.length) {
       return util.removeSpace(domAlert.text());
     }
-    else{
-      console.log(html);
-      return '不明なエラー';
-    }
+
+    return '不明なエラー';
   };
 
   const listManagers = async (doLogin) => {
     console.log('jobcan.listManagers');
     const out = [];
     let url = 'https://ssl.jobcan.jp/m/work/accessrecord?_m=adit';
-    if(doLogin) url += loginParam;
-    const html = await $.ajax({url});
+    if (doLogin) url += loginParam;
+    const html = await $.ajax({ url });
     const doc = $(html);
     doc.find('select[name=group_id] option').each(() => {
       out.push({
@@ -170,6 +168,7 @@ const Jobcan = (loginCode) => {
         name: $(this).text()
       });
     });
+
     return out;
   };
 
@@ -180,7 +179,10 @@ const Jobcan = (loginCode) => {
   };
 
   return {
-      day, stamp, listManagers, login
+      day,
+      stamp,
+      listManagers,
+      login
   };
 };
 
