@@ -15,7 +15,7 @@ async function init() {
       configLocal: {},
       managers: [],
       message: '',
-      // autostampCodes: autostampCodes
+      autostampCodes: autostampCodes
     },
     computed: {
       loginCode: {
@@ -32,9 +32,9 @@ async function init() {
         app.config.latitude = latitude;
         app.config.longitude = longitude;
       },
-      // getAutostampCode() {
-      //   return autostampCodes[this.config.autostampMode].trim();
-      // },
+      getAutostampCode() {
+        return autostampCodes[this.config.autostampMode].trim();
+      },
       clearLocals() {
         config.clearLocal();
         alert('削除しました');
@@ -51,7 +51,7 @@ function delayedOnce(fn, ms) {
   timeout = setTimeout(fn, ms);
 }
 
-/** ジョブカンコードをセットしたタイミングで、 */
+/** ジョブカンコードをセットしたタイミングで、打刻グループのマネージャーリストを取得する */
 async function loadManagers() {
   jobcan = Jobcan(app.loginCode);
   app.managers = await jobcan.listManagers(true);

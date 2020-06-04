@@ -8,7 +8,7 @@ const initDay = (_date) => {
   return {
     date: date,
     isToday: date.isSame(today, 'day'),
-    jobcanDay: Jobcan().day(date),
+    jobcanDay: jobcan.day(date),
     holiday: holiday.check(date),
   };
 };
@@ -33,29 +33,36 @@ const getBackgroundPage = () => {
   });
 };
 
+/** 
+ * 出社、退社ボタンが押された時に実行
+ * @param isAuto true: 出社 false: 退社
+ */
 const stamp = async (isAuto) => {
   console.log('app.stamp', isAuto);
 
   if (confirmStamp(isAuto)) {
     Vue.set(app.day, 'result', null);
     let result;
-    if (app.ui.input.time=='now') {
+    // 「いま」を選択したとき
+    if (app.ui.input.time == 'now') {
       let latitude = await config().get('latitude');
       let longitude = await config().get('longitude');
-      if(!latitude || !longitude){
+      if (!latitude || !longitude) {
         const bg = await getBackgroundPage();
         latitude = bg.position.coords.latitude
         longitude = bg.position.coords.longitude;
       }
+
       const note = isAuto ? '出社' : '退社';
       const manager = await config().get('manager');
 
-      result = await Jobcan().stamp(isAuto, latitude, longitude, note, manager, true);
+      result = await jobcan.stamp(isAuto, latitude, longitude, note, manager, true);
     }
+    // セレクトボックスで時間を選択したとき
     else {
       const hour = app.ui.input.time;
       const note = isAuto ? '出社' : '退社';
-      const manager = await config.get('manager');
+      const manager = await config().get('manager');
       result = await app.day.jobcanDay.addStamp(isAuto, hour, 0, note, manager, true);
     }
 
@@ -64,6 +71,10 @@ const stamp = async (isAuto) => {
   }
 };
 
+/**
+ * 既に打刻がある場合に確認メッセージを出力
+ * @param isAuto true: 出社 false: 退社
+*/
 const confirmStamp = (isAuto) => {
   let msg = null;
   if (isAuto && getStampsOf('Enter').length) msg = '既に出勤打刻がありますがよろしいですか？';
@@ -73,7 +84,7 @@ const confirmStamp = (isAuto) => {
 };
 
 /**
- * @param typeId string
+ * @param typeId string 打刻の種類を表す文字列
  * @return 打刻の種類 Array<string>
  */
 const getStampsOf = (typeId) => {

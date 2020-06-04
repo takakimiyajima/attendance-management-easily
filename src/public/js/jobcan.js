@@ -19,7 +19,7 @@ const Jobcan = (loginCode) => {
       const clean = util.removeSpace(html);
       const doc = $(html);
 
-      //勤務時間
+      // 勤務時間
       const reHours = /<b>総計<\/b>(\d+:\d+)\&nbsp\;<b>休憩<\/b>(\d+:\d+)<br>/g;
       const getHours = (match) => {
         const work = moment.duration(match[1]);
@@ -60,19 +60,20 @@ const Jobcan = (loginCode) => {
       return out;
     };
 
-      //勤怠情報取得
+    // 勤怠情報取得
     const getInfo = async (doLogin) => {
       console.log('jobcan.getInfo', util.ymd(date));
       var url = 'https://ssl.jobcan.jp/m/work/accessrecord?recordDay=' + util.ymd(date);
-      if(doLogin) url += loginParam;
-      const html = await $.ajax({url});
+      if (doLogin) url += loginParam;
+      const html = await $.ajax({ url });
 
       return parseInfo(html);
     };
 
-    //打刻申請
+    // 打刻申請
     const addStamp = async (isAuto, hour, minute, note, manager, doLogin) => {
       console.log('jobcan.addStamp', util.ymd(date), isAuto, hour, minute, note, manager);
+      // モバイルページ：特定の日付の編集画面のURL
       var url = 'https://ssl.jobcan.jp/m/work/accessrecord?_m=edit&recordDay=' + util.ymd(date);
       if (doLogin) url += loginParam;
       var html = await $.ajax({ url });
@@ -118,7 +119,7 @@ const Jobcan = (loginCode) => {
     };
   };
 
-  //通常の打刻
+  // 通常の打刻
   const stamp = async (isAuto, latitude, longitude, note, manager, doLogin) => {
     console.log('jobcan.stamp', isAuto, latitude, longitude, note, manager);
     const date = moment();
@@ -162,10 +163,11 @@ const Jobcan = (loginCode) => {
     if (doLogin) url += loginParam;
     const html = await $.ajax({ url });
     const doc = $(html);
-    doc.find('select[name=group_id] option').each(() => {
+    // htmlから、打刻グループのリストを取得してきている
+    doc.find('select[name=group_id] option').each((index, element) => {
       out.push({
-        id: $(this).val(),
-        name: $(this).text()
+        id: element.value,
+        name: element.textContent
       });
     });
 
@@ -173,9 +175,9 @@ const Jobcan = (loginCode) => {
   };
 
   const login = async () => {
-      console.log('jobcan.login');
-      let url = 'https://ssl.jobcan.jp/m?code=' + loginCode;
-      await $.ajax({url});
+    console.log('jobcan.login');
+    let url = 'https://ssl.jobcan.jp/m?code=' + loginCode;
+    await $.ajax({ url });
   };
 
   return {
