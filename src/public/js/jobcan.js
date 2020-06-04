@@ -28,6 +28,7 @@ const Jobcan = (loginCode) => {
 
         return { work, rest, total };
       };
+
       var match = reHours.exec(clean);
       if (match) {
         out.hours.accepted = getHours(match);
@@ -37,17 +38,17 @@ const Jobcan = (loginCode) => {
         }
       }
 
-      //アラート
+      // アラート
       const alert = doc.find('font[style="color:red; font-size: 13px"]').text();
       out.alert = util.removeSpace(alert);
 
-      //打刻一覧
+      // 打刻一覧
       doc.find('table.shift03t tr').each(() => {
         if ($(this).find('td:nth-child(1) a').text().length > 0) {
           const type = util.trim($(this).find('td:nth-child(1) a').text());
           let typeId = '';
-          if(['出勤', '入室'].includes(type)) typeId = 'Enter';
-          if(['退勤', '退室'].includes(type)) typeId = 'Leave';
+          if (['出勤', '入室'].includes(type)) typeId = 'Enter';
+          if (['退勤', '退室'].includes(type)) typeId = 'Leave';
           out.stamps.push({
             type, typeId,
             time: util.trim($(this).find('td:nth-child(2)').text()),
@@ -119,7 +120,10 @@ const Jobcan = (loginCode) => {
     };
   };
 
-  // 通常の打刻
+  /** 
+   * 通常の打刻
+   * @return 打刻した際の、結果内容の文字列
+   */
   const stamp = async (isAuto, latitude, longitude, note, manager, doLogin) => {
     console.log('jobcan.stamp', isAuto, latitude, longitude, note, manager);
     const date = moment();
@@ -136,16 +140,18 @@ const Jobcan = (loginCode) => {
       adit_item: isAuto ? '打刻' : '退勤',
       yakin: ''
     };
+    // GPS打刻画面
     let url = 'https://ssl.jobcan.jp/m/work/stamp-save-confirm/';
     if (doLogin) url += loginParam;
-    let html = await $.ajax({ url, data, method:'POST' });
+    let html = await $.ajax({ url, data, method: 'POST' });
     var doc = $(html);
     var domToken = doc.find('input[name=token]');
     if (domToken.length) {
       data.token = domToken.val();
       data.confirm = 'はい';
+      // 打刻する
       url = 'https://ssl.jobcan.jp/m/work/stamp-save-smartphone/';
-      html = await $.ajax({ url, data, method:'POST' });
+      html = await $.ajax({ url, data, method: 'POST' });
       doc = $(html);        
     }
     var domAlert = doc.find('div[style="text-align: center"]');

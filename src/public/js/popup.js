@@ -3,6 +3,7 @@ let jobcan;
 
 const today = moment().add(-5, 'hour');
 
+// 日付データの初期値
 const initDay = (_date) => {
   const date = moment(_date);
   return {
@@ -13,17 +14,21 @@ const initDay = (_date) => {
   };
 };
 
+// 日付をプラマイ1するか、本日の日付にするか
 const addDay = (diff) => {
   app.day = diff == 'today'
     ? initDay(today)
     : initDay(app.day.date.add(diff, 'day'));
 
+  // 入力する時間の設定。「いま」でない場合、10時をデフォルトで表示
   app.ui.input.time = app.day.isToday ? 'now' : '10';
   getInfo();
 };
 
+// 勤怠情報取得しVueへセットする
 const getInfo = async () => {
   console.log('app.getInfo');
+  // ログイン状態で勤怠情報取得する
   Vue.set(app.day, 'info', await app.day.jobcanDay.getInfo(true));
 };
 
@@ -66,7 +71,9 @@ const stamp = async (isAuto) => {
       result = await app.day.jobcanDay.addStamp(isAuto, hour, 0, note, manager, true);
     }
 
+    // ログイン状態で勤怠情報取得しVueへセットする
     await getInfo();
+    // 打刻結果についての文字列をセットする
     Vue.set(app.day, 'result', result);
   }
 };
