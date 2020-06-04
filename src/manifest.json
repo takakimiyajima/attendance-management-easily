@@ -20,7 +20,10 @@
     "storage",
     "geolocation",
     "https://holidays-jp.github.io/*",
-    "https://ssl.jobcan.jp/*"
+    "https://ssl.jobcan.jp/*",
+    "idle",
+    "notifications",
+    "alarms"
   ],
   "options_page": "public/options.html"
 } 
