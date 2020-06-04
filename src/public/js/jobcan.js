@@ -43,7 +43,7 @@ const Jobcan = (loginCode) => {
       out.alert = util.removeSpace(alert);
 
       // 打刻一覧
-      doc.find('table.shift03t tr').each(() => {
+      doc.find('table.shift03t tr').each(function() {
         if ($(this).find('td:nth-child(1) a').text().length > 0) {
           const type = util.trim($(this).find('td:nth-child(1) a').text());
           let typeId = '';
@@ -170,12 +170,12 @@ const Jobcan = (loginCode) => {
     const html = await $.ajax({ url });
     const doc = $(html);
     // htmlから、打刻グループのリストを取得してきている
-    doc.find('select[name=group_id] option').each((index, element) => {
+    doc.find('select[name=group_id] option').each(function() {
       out.push({
-        id: element.value,
-        name: element.textContent
+        id: $(this).val(),
+        name: $(this).text()
       });
-    });
+  });
 
     return out;
   };
@@ -197,7 +197,7 @@ const Jobcan = (loginCode) => {
 
 async function test() {
 
-  const jobcan = Jobcan(await config.get('dakokuUrl'));
+  const jobcan = Jobcan(await config().get('loginCode'));
 
   //ログイン
   await jobcan.login();
@@ -206,12 +206,14 @@ async function test() {
   console.log(await jobcan.listManagers());
 
   //過去日の情報取得と打刻申請
-  const day = jobcan.day(moment('2019/06/02'));
+  const day = jobcan.day(moment('2020/06/04'));
+  console.log('await day.getInfo()');
   console.log(await day.getInfo());
-  console.log(await day.addStamp(true, moment().hour(), moment().minute(), 'テスト', await config.get('manager')));
+  console.log('await day.addStamp()');
+  // console.log(await day.addStamp(true, moment().hour(), moment().minute(), 'テスト', await config().get('manager')));
 
   //GPS打刻
-  console.log(await jobcan.stamp(true, 35.7041823, 139.7565229, '出勤', 86));
+  // console.log(await jobcan.stamp(true, 35.700014, 139.774677, '出勤', 2, true));
 }
 
-//test();
+test();
