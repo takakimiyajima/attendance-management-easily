@@ -4,13 +4,13 @@
   "version": "1.0.0",
   "description": "Easily JobCan Input Tool",
   "icons": {
-    "32": "public/img/icon32.png",
+    "16": "public/img/icon16.png",
     "48": "public/img/icon48.png",
     "128": "public/img/icon128.png"
   },
   "browser_action": {
     "default_popup": "public/popup.html",
-    "default_icon": "public/img/icon38.png"
+    "default_icon": "public/img/icon48.png"
   },
   "background": {
     "page": "public/background.html",
