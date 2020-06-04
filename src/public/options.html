@@ -55,7 +55,7 @@
             </div>
           </div>
           <hr>
-          <div class="form-group row">
+          <!-- <div class="form-group row">
             <div class="col-sm-2">
               <label class="col-form-label">自動打刻（ベータ）</label>
             </div>
@@ -67,8 +67,8 @@
               </select>
               <small class="form-text text-muted" v-if="config.autostampMode && config.autostampMode!='none'">{{config.autostampMode=='custom' ? '自分でコードを記述します' : autostampCodes[config.autostampMode].description}}</small>
             </div>
-          </div>
-          <div class="form-group row" v-if="config.autostampMode && config.autostampMode!='none'">
+          </div> -->
+          <!-- <div class="form-group row" v-if="config.autostampMode && config.autostampMode!='none'">
             <div class="col-sm-2">
               <label class="col-form-label">PC設定</label>
             </div>
@@ -81,8 +81,8 @@
                 </label>
               </div>
             </div>
-          </div>
-          <div class="form-group row" v-if="config.autostampMode && config.autostampMode!='none'">
+          </div> -->
+          <!-- <div class="form-group row" v-if="config.autostampMode && config.autostampMode!='none'">
             <div class="col-sm-2">
               <label class="col-form-label">スクリプト</label>
             </div>
@@ -92,14 +92,13 @@
               <small class="form-text text-muted">
                 このスクリプトが毎分実行されます。
                 APIとして、
-                <a href="https://github.com/team-lab/tools-SimpleJobcan/blob/master/src/public/js/autostamp-api.js" target="_blank">こちら</a>
-                に記述されている関数が利用できます。詳細は #kintai-util チャンネルでお尋ねください。
+                <a href="autostamp-api.js" target="_blank">こちら</a>
               </small>
               <div class="text-right">
                 <button type="button" class="btn btn-link btn-sm" v-on:click="clearLocals()">保存した値のクリア</button>
               </div>
             </div>
-          </div>
+          </div> -->
           <div class="form-group row">
             <div class="col-sm-10">
               <button type="submit" class="btn btn-primary">設定を保存</button>
