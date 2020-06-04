@@ -5,7 +5,7 @@ const API = (() => {
 
   (async () => {
     await holiday.init();
-    jobcan = Jobcan(await config.get('loginUrl'));
+    jobcan = Jobcan(await config().get('loginUrl'));
   })().catch(console.error);
 
   return {

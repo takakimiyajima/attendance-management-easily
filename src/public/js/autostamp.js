@@ -10,9 +10,9 @@
   const onInterval = ()=>{
       createNextInterval();
       const exec = async () => {
-          const isExec = await config.getLocal('execAutostamp');
-          const mode = await config.get('autostampMode');
-          const customCode = await config.get('autostampCustomCode');
+          const isExec = await config().getLocal('execAutostamp');
+          const mode = await config().get('autostampMode');
+          const customCode = await config().get('autostampCustomCode');
 
           if(isExec && mode && mode!='none'){
               const code = mode=='custom' ? customCode : autostampCodes[mode].code;
