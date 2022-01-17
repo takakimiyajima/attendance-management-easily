@@ -1,4 +1,4 @@
-# ジョブカンを簡単に打刻するためのChrome拡張機能
+# Chrome extension for easy imprinting of a attendance management system
 
 ### Vue
 CSPをクリアしていない動作しないため、
